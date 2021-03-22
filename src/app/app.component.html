@@ -1,0 +1,109 @@
+<div class="container">
+  <h1>{{titulo}}</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>{{candidatoSelec.nombre}}</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    
+      <!-- <div class="col-md-3"><li class="list-gruop-item">
+        <h2>{{day}}</h2>
+      </li>
+      </div>
+      <div class="col-md-3"><li class="list-gruop-item">
+        <h2>{{hours}}</h2>
+      </li>
+      </div>
+      <div class="col-md-3"><li class="list-gruop-item">
+        <h2>{{minutes}}</h2>
+      </li>
+      </div>
+      <div class="col-md-3"><li class="list-gruop-item">
+        <h2>{{seconds}}</h2>
+      </li></div>   -->
+
+      
+               
+    
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <h5>Cuantas Personas Participaran?</h5>
+    </div>
+    <div class="col-md-2">
+      <input type="number" name="numero" id="numero" class="form-control" placeholder="No." [(ngModel)]="cantidad" >
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-secondary" (click)="agregarColumnas()">Agregar</button>
+    </div>
+
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-7">
+      <h5>Cuanto tiempo se agregara</h5>
+    </div>
+    <div class="col-md-2">
+      <input type="text" name="tiempo" id="tiempo" class="form-control" placeholder="tiempo">
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-primary">OK</button>
+    </div>
+  </div>
+  
+
+  <!-- <div class="row">
+    <div class="col-md-8">
+     <input type="text" name="candidato" id="candidato" class="form-control" placeholder="Persona  agregar" [(ngModel)]="candidato.nombre">
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-primary" (click)="agregarCandidato()" >Agregar </button>
+    </div>
+  </div> -->
+  <br>
+  <div class="row">
+    <div class="col-md-7"><p>Candidatos</p></div>
+    <div class="col-md-2"><p>Tiempo</p></div>
+    <div class="col-md-3"></div>
+  </div>
+
+  <div *ngFor= "let candidato of candidatos "  class="row" >
+          <div class="col-md-1 mt-2">
+            <h3>
+              {{candidato.id}}.-
+            </h3>
+          </div>
+          <div class="col-md-6">
+                <input type="text" name="candidato" id="candidato"  class="form-control" placeholder="Persona a agregar" [(ngModel)]="candidato.nombre">
+          </div>
+          <div class="col-md-2">
+              <h3>0{{candidato.tiempo}}:00</h3>   
+          </div>
+          <div class="col-md-3">
+              <button class="btn btn-danger"  (click)="mostrarC(candidato)" >Mostrar </button>
+          </div>  
+  </div> 
+  <br>
+  <br>
+
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <button class="btn btn-primary" [disabled] = "bandera1" (click) ="guardarRegistros()">GUARDAR</button>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-danger"  (click) ="borrarRegistros('datos')">RESETEAR</button>
+    </div>
+  </div> 
+
+</div>
+</div>
