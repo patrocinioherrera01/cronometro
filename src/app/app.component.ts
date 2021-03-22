@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Candidatos } from 'src/assets/classes/Candidatos.class';
 
 @Component({
@@ -6,8 +6,21 @@ import { Candidatos } from 'src/assets/classes/Candidatos.class';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   titulo ='Cronometro'
+  /////////////////////////////////////////Bariables del rosas\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  minutos:number;
+   segundos:number;
+   pausa:boolean;
+   messagePausa:string;
+   objCandidato = new Candidatos();
+   tempo:any;
+
+   ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
   candidatos: Candidatos[] = []; 
 
@@ -16,6 +29,7 @@ export class AppComponent {
 
   mostrarC(candidatoo: Candidatos){
     this.candidatoSelec = candidatoo;
+    this.inicarTemporizador();
   }
   
 
@@ -23,7 +37,7 @@ export class AppComponent {
 
   agregarColumnas(){
     for (let index = 0; index < this.cantidad; index++) {
-    this.candidatos.push({id: index+1, nombre: " ", tiempo: 0});
+    this.candidatos.push({id: index+1, nombre: " ", tiempo: 0, minutos: 0});
     
   }
   }
@@ -37,6 +51,7 @@ export class AppComponent {
    
   } */
    bandera1: boolean = false;
+   contador: number = 0;
 
   guardarRegistros(){
     /* this.candidatos.push(this.candidato); */
@@ -59,6 +74,10 @@ export class AppComponent {
 
   constructor(){}
   ngOnInit(){
+
+    this.minutos=0;
+    this.segundos=0;
+    this.messagePausa ="Pausar";
     
     let candidatosLocal = localStorage.getItem("candidatos");
     if(candidatosLocal != undefined){
@@ -66,5 +85,43 @@ export class AppComponent {
     }
     
   }
+
+  ///////////////////////////////////////////////////////////////////////
+
+  inicarTemporizador(){
+    
+    
+    this.tempo = setInterval(()=>this.temporizar() ,1000);
+
+  }
+  agregaTiempo(){
+    
+    for (let index = 0; index < this.cantidad; index++) {  
+    this.candidatos[index].minutos = this.objCandidato.minutos;
+    }
+  }
+
+  resetartiempo(){
+    this.minutos=0;
+    this.segundos=0;
+  }
+
+  pausartiempo(){
+  clearInterval(this.tempo);
+  /* this.objCandidato.minutos=this.minutos;
+  this.objCandidato.segundos=this.segundos; */
+  }
+
+  temporizar(){
+    
+    if (--this.segundos < 0){
+      this.segundos=59;
+    if (--this.minutos < 0){
+      this.resetartiempo();
+    }
+  }
+
+  }
+  /////////////////////////////////////////////////////////////////////////
 
 }

@@ -10,21 +10,21 @@
 <div class="container">
   <div class="row">
     
+      <div class="col-md-4">
+        
+      
+      </div> 
+      <div class="col-md-4">
+        <h2>{{minutos}}</h2>
+      
+      </div>
+      <div class="col-md-4">
+        <h2>0{{segundos}}</h2>
+    
+      </div>
       <!-- <div class="col-md-3"><li class="list-gruop-item">
-        <h2>{{day}}</h2>
-      </li>
-      </div>
-      <div class="col-md-3"><li class="list-gruop-item">
-        <h2>{{hours}}</h2>
-      </li>
-      </div>
-      <div class="col-md-3"><li class="list-gruop-item">
-        <h2>{{minutes}}</h2>
-      </li>
-      </div>
-      <div class="col-md-3"><li class="list-gruop-item">
         <h2>{{seconds}}</h2>
-      </li></div>   -->
+      </li></div>  --> 
 
       
                
@@ -53,10 +53,10 @@
       <h5>Cuanto tiempo se agregara</h5>
     </div>
     <div class="col-md-2">
-      <input type="text" name="tiempo" id="tiempo" class="form-control" placeholder="tiempo">
+      <input type="text" name="tiempo" id="tiempo" class="form-control" placeholder="tiempo" [(ngModel)]="objCandidato.minutos" >
     </div>
     <div class="col-md-3">
-      <button class="btn btn-primary">OK</button>
+      <button class="btn btn-primary" (click)="agregaTiempo()">OK</button>
     </div>
   </div>
   
@@ -86,10 +86,10 @@
                 <input type="text" name="candidato" id="candidato"  class="form-control" placeholder="Persona a agregar" [(ngModel)]="candidato.nombre">
           </div>
           <div class="col-md-2">
-              <h3>0{{candidato.tiempo}}:00</h3>   
+              <h3>0{{candidato.minutos}}:{{segundos}}</h3>   
           </div>
           <div class="col-md-3">
-              <button class="btn btn-danger"  (click)="mostrarC(candidato)" >Mostrar </button>
+              <button class="btn btn-danger"  (click)="mostrarC(candidato)"  >Mostrar </button>
           </div>  
   </div> 
   <br>
@@ -100,9 +100,13 @@
     <div class="col-md-4">
       <button class="btn btn-primary" [disabled] = "bandera1" (click) ="guardarRegistros()">GUARDAR</button>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
+      <button class="btn btn-danger"  (click)="pausartiempo()">PAUSAR</button>
+    </div>
+    <div class="col-md-2">
       <button class="btn btn-danger"  (click) ="borrarRegistros('datos')">RESETEAR</button>
     </div>
+    
   </div> 
 
 </div>
